@@ -7,7 +7,6 @@ import model.Board;
 import model.Duplicate;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  *
  * @author engom
