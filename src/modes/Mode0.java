@@ -8,10 +8,8 @@ import model.Duplicate;
 import validator.RowValidator;
 import validator.ColumnValidator;
 import validator.BoxValidator;
-
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  *
  * @author engom

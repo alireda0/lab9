@@ -3,19 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.lang.Integer;
-
 /**
  *
  * @author engom
  */
 public class Board {
     private final int[][] grid = new int[9][9];
-
     public Board() {
     }
     public static Board fromCSV(String path) throws FileNotFoundException{

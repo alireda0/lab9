@@ -6,8 +6,6 @@ package modes;
 import model.Board;
 import model.Duplicate;
 import java.util.List;
-
-
 /**
  *
  * @author engom
