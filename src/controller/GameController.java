@@ -3,6 +3,7 @@ package controller;
 import logging.MoveLog;
 import logging.MoveRecord;
 import model.Board;
+import model.FixedCells;
 import model.VerificationResult;
 import solver.SudokuSolver;
 import storage.GameStorage;
@@ -17,6 +18,8 @@ public class GameController {
     private final MoveLog moveLog;
     private final SudokuSolver solver;
 
+    private FixedCells fixedCells;
+
     public GameController(GameStorage storage, BoardVerifier verifier) {
         this.storage = storage;
         this.verifier = verifier;
@@ -29,11 +32,19 @@ public class GameController {
         storage.clearIncompleteFolder();
         storage.saveCurrentBoard(board);
         moveLog.ensureExists();
+
+        this.fixedCells = new FixedCells(board);
     }
 
-    public void resumeTrackingExistingGame() throws IOException {
+    public void resumeTrackingExistingGame(Board board) throws IOException {
         storage.ensureFolderStructure();
         moveLog.ensureExists();
+
+        this.fixedCells = new FixedCells(board);
+    }
+
+    public boolean isFixedCell(int row1, int col1) {
+        return fixedCells != null && fixedCells.isFixed(row1, col1);
     }
 
     public void applyMove(Board board, int row1, int col1, int newVal) throws IOException {
@@ -42,6 +53,10 @@ public class GameController {
         }
         if (newVal < 0 || newVal > 9) {
             throw new IllegalArgumentException("Value must be 0..9");
+        }
+
+        if (isFixedCell(row1, col1)) {
+            throw new IllegalStateException("This cell is fixed and cannot be edited.");
         }
 
         int r = row1 - 1;
@@ -83,17 +98,9 @@ public class GameController {
         }
 
         Board solved = solver.solveIfExactlyFiveBlanks(board);
-        if (solved == null) {
-            return null;
-        }
+        if (solved == null) return null;
 
         storage.saveCurrentBoard(solved);
         return solved;
-    }
-
-    public void clearSolvedGameIfValid(VerificationResult result) throws IOException {
-        if (result != null && result.isValid()) {
-            storage.deleteCurrentGame();
-        }
     }
 }
