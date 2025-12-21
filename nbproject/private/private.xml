@@ -3,11 +3,29 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab%209/src/model/Board.java</file>
-            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab%209/src/model/Duplicate.java</file>
-            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab%209/src/validator/RowValidator.java</file>
-            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab%209/src/validator/ColumnValidator.java</file>
-            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab%209/src/validator/BoxValidator.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/validator/BoxValidator.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/validator/ColumnValidator.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/validator/RowValidator.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/model/Board.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/model/Duplicate.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/model/Difficulty.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/model/VerificationResult.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/model/VerificationStatus.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/storage/GameStorage.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/catalog/GameCatalogue.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/controller/StartupController.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/driver/GameDriver.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/verifier/BoardVerifier.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/util/RandomPairs.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/logging/MoveRecord.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/logging/MoveLog.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/controller/GameController.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/solver/BlankCell.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/solver/BlankFinder.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/solver/AssignmentIterator.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/solver/BoardFlyweight.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/solver/SudokuSolver.java</file>
+            <file>file:/C:/Users/engom/OneDrive/Documents/GitHub/lab9/src/model/FixedCells.java</file>
         </group>
     </open-files>
 </project-private>
