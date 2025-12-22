@@ -73,6 +73,7 @@ public class GameStorage {
         return !listGames(d).isEmpty();
     }
 
+    // FIXED: Added missing method
     public boolean hasAllDifficulties() throws IOException {
         for (Difficulty d : Difficulty.values()) {
             if (!hasAnyGame(d)) return false;
@@ -138,9 +139,18 @@ public class GameStorage {
         Files.deleteIfExists(csvPath);
     }
 
+    // FIXED: Added missing method
     public void deleteCurrentGame() throws IOException {
         Files.deleteIfExists(currentBoardPath());
         Files.deleteIfExists(currentLogPath());
+    }
+
+    // -------------------- SAVE GAME --------------------
+    public Path saveGame(Board board, Difficulty difficulty, String fileName) throws IOException {
+        if (!fileName.toLowerCase().endsWith(".csv")) fileName += ".csv";
+        Path out = difficultyDir(difficulty).resolve(fileName);
+        writeBoardCsv(board, out);
+        return out;
     }
 
     // -------------------- CSV WRITER (NO BUFFER) --------------------
@@ -164,10 +174,4 @@ public class GameStorage {
                 StandardOpenOption.TRUNCATE_EXISTING
         );
     }
-    public Path saveGame(Board board, Difficulty difficulty, String fileName) throws IOException {
-    if (!fileName.toLowerCase().endsWith(".csv")) fileName += ".csv";
-    Path out = difficultyDir(difficulty).resolve(fileName);
-    writeBoardCsv(board, out);
-    return out;
-}
 }
