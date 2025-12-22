@@ -10,9 +10,9 @@ import verifier.BoardVerifier;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 
 public class GameDriver {
-
     private final GameStorage storage;
     private final BoardVerifier verifier;
 
@@ -21,12 +21,6 @@ public class GameDriver {
         this.verifier = verifier;
     }
 
-    // Generates 1 game for each difficulty by default
-    public void generateDifficultyGamesFromSolved(Path solvedCsvPath) throws IOException {
-        generateDifficultyGamesFromSolved(solvedCsvPath, 1);
-    }
-
-    // You can generate multiple games per difficulty (optional)
     public void generateDifficultyGamesFromSolved(Path solvedCsvPath, int gamesPerDifficulty) throws IOException {
         storage.ensureFolderStructure();
 
@@ -40,31 +34,29 @@ public class GameDriver {
         }
 
         for (int i = 1; i <= gamesPerDifficulty; i++) {
-            Board easy = makePuzzleFromSolved(solved, 10);
-            Board medium = makePuzzleFromSolved(solved, 25);
-            Board hard = makePuzzleFromSolved(solved, 20);
+            // Generate puzzles for each difficulty
+            Board easy = removeCellsFromSolved(solved, 10);   // Easy: 10 holes
+            Board medium = removeCellsFromSolved(solved, 20); // Medium: 20 holes
+            Board hard = removeCellsFromSolved(solved, 25);   // Hard: 25 holes
 
-            storage.saveGame(easy, Difficulty.EASY,   "game_" + pad3(i) + ".csv");
-            storage.saveGame(medium, Difficulty.MEDIUM,"game_" + pad3(i) + ".csv");
-            storage.saveGame(hard, Difficulty.HARD,   "game_" + pad3(i) + ".csv");
+            storage.saveGame(easy, Difficulty.EASY, "game_" + pad3(i) + ".csv");
+            storage.saveGame(medium, Difficulty.MEDIUM, "game_" + pad3(i) + ".csv");
+            storage.saveGame(hard, Difficulty.HARD, "game_" + pad3(i) + ".csv");
         }
     }
 
-    private Board makePuzzleFromSolved(Board solved, int holes) {
+    private Board removeCellsFromSolved(Board solved, int holes) {
         Board puzzle = new Board(solved);
 
         long seed = System.currentTimeMillis() ^ (long)holes * 31;
         RandomPairs pairs = new RandomPairs(seed);
 
-        int removed = 0;
-        while (removed < holes) {
-            int[] rc = pairs.next();
-            int r = rc[0], c = rc[1];
-
-            if (puzzle.get(r, c) != 0) {
-                puzzle.set(r, c, 0);
-                removed++;
-            }
+        List<int[]> positionsToRemove = pairs.generateDistinctPairs(holes);
+        
+        for (int[] pos : positionsToRemove) {
+            int r = pos[0];
+            int c = pos[1];
+            puzzle.set(r, c, 0);
         }
 
         return puzzle;
